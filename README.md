@@ -9,18 +9,21 @@
 
 **Um design system cross-platform moderno com componentes para Web e React Native**
 
-[📚 Documentação](https://your-storybook-url.com) • [🐛 Issues](https://github.com/marcolongitude/design-system-monorepo/issues) • [🚀 Releases](https://github.com/marcolongitude/design-system-monorepo/releases)
+[![GitHub](https://img.shields.io/badge/GitHub-marcolongitude-black?style=flat-square&logo=github)](https://github.com/marcolongitude/design-system-monorepo) [![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](https://github.com/marcolongitude/design-system-monorepo/blob/main/LICENSE) [![CI/CD](https://img.shields.io/github/actions/workflow/status/marcolongitude/design-system-monorepo/ci.yml?branch=main&style=flat-square&label=CI%2FCD)](https://github.com/marcolongitude/design-system-monorepo/actions)
+
+[📚 Documentação](https://marcolongitude.github.io/design-system-monorepo) • [🐛 Issues](https://github.com/marcolongitude/design-system-monorepo/issues) • [🚀 Releases](https://github.com/marcolongitude/design-system-monorepo/releases)
 
 </div>
 
 ## ✨ Características
 
 -   🌐 **Cross-platform**: Componentes funcionam tanto na Web quanto no React Native
--   📦 **Monorepo**: Estrutura organizadabem componentes, temas e documentação
+-   📦 **Monorepo**: Estrutura organizada com componentes, temas e documentação
 -   🎨 **Design Tokens**: Sistema consistente de cores, tipografia e espaçamentos
 -   📖 **Storybook**: Documentação visual interativa
 -   🔒 **TypeScript**: Type safety completo em todos os componentes
 -   🎯 **API Unificada**: Mesma interface para ambas as plataformas
+-   🚀 **CI/CD**: Deploy automático do Storybook via GitHub Actions
 
 ## 📁 Estrutura do Projeto
 
@@ -49,6 +52,7 @@ design-system-monorepo/
 │       │       └── DebugText.tsx
 │       └── package.json
 ├── 📚 .storybook/                  # Configuração Storybook
+├── 🔄 .github/workflows/           # GitHub Actions CI/CD
 ├── 📄 README.md
 └── 📋 package.json
 ```
@@ -175,11 +179,24 @@ export const Text = ({ children, ...props }) => {
 };
 ```
 
+## 🚀 CI/CD
+
+O projeto possui automação completa via GitHub Actions:
+
+-   ✅ **Testes automatizados** em Node.js 18.x e 20.x
+-   🏗️ **Build automatizado** de todos os pacotes
+-   📚 **Deploy automático** do Storybook para GitHub Pages
+-   🔄 **Execução** em push para `main` e em Pull Requests
+
 ## 🤝 Contribuindo
 
+Contribuições são muito bem-vindas! Por favor, leia o [guia de contribuição](CONTRIBUTING.md) para mais detalhes.
+
+### Processo Rápido
+
 1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/amazing-feature`)
-3. Commit suas mudanças (`git commit -m 'Add amazing feature'`)
+2. Crie sua feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit suas mudanças (`git commit -m 'feat: add amazing feature'`)
 4. Push para a branch (`git push origin feature/amazing-feature`)
 5. Abra um Pull Request
 
