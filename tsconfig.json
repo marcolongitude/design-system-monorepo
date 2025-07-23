@@ -1,0 +1,27 @@
+{
+	"compilerOptions": {
+		"composite": true,
+		"baseUrl": ".",
+		"paths": {
+			"@meu-escopo/theme": ["packages/theme/src"],
+			"@meu-escopo/react-native-components": ["packages/react-native-components/src"],
+			"@meu-escopo/web-components": ["packages/web-components/src"]
+		},
+		"declaration": true,
+		"declarationMap": true,
+		"emitDeclarationOnly": true,
+		"outDir": "./dist",
+		"skipLibCheck": true,
+		"strict": true,
+		"moduleResolution": "node",
+		"module": "ESNext",
+		"target": "ES2019",
+		"jsx": "react"
+	},
+	"include": ["packages/*/src"],
+	"references": [
+		{ "path": "./packages/theme" },
+		{ "path": "./packages/web-components" },
+		{ "path": "./packages/react-native-components" }
+	]
+}

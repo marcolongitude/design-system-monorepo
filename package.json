@@ -1,0 +1,37 @@
+{
+  "name": "design-system",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "build:theme": "npm run build --workspace=@meu-escopo/theme",
+    "build:rn": "npm run build --workspace=@meu-escopo/react-native-components",
+    "build:web": "npm run build --workspace=@meu-escopo/web-components",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.0",
+    "@storybook/addon-interactions": "^7.6.0",
+    "@storybook/addon-links": "^7.6.0",
+    "@storybook/blocks": "^7.6.0",
+    "@storybook/react": "^7.6.0",
+    "@storybook/react-vite": "^7.6.0",
+    "@storybook/testing-library": "^0.2.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-native-web": "^0.19.0",
+    "storybook": "^7.6.0",
+    "styled-components": "^5.3.0",
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "@shopify/restyle": "^2.4.5"
+  },
+  "overrides": {
+    "inline-style-prefixer": "5.1.2"
+  }
+}

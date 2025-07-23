@@ -1,0 +1,60 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Introdução" />
+
+# Design System Monorepo
+
+Este é um design system cross-platform com suporte a **Web** e **React Native**.
+
+## 📦 Estrutura dos Pacotes
+
+O monorepo está organizado em 3 pacotes principais:
+
+-   **`@uikit/theme`** - Tema compartilhado entre plataformas
+-   **`@uikit/web-components`** - Componentes para Web (styled-components)
+-   **`@uikit/react-native-components`** - Componentes para React Native (@shopify/restyle)
+
+## 🌐 Web Components
+
+Componentes otimizados para web usando **styled-components**:
+
+```tsx
+import { Text } from "@uikit/web-components";
+
+<Text size="lg" fontWeight="bold" color="primary">
+	Olá Web!
+</Text>;
+```
+
+## 📱 React Native Components
+
+Componentes otimizados para React Native usando **@shopify/restyle**:
+
+```tsx
+import { ThemeProvider } from "@shopify/restyle";
+import { theme } from "@uikit/theme";
+import { Text } from "@uikit/react-native-components";
+
+<ThemeProvider theme={theme}>
+	<Text size="lg" fontWeight="bold" color="primary">
+		Olá React Native!
+	</Text>
+</ThemeProvider>;
+```
+
+## 🎨 Design Tokens
+
+Tokens centralizados garantem consistência entre plataformas:
+
+-   **Cores** - Primary, secondary, text colors
+-   **Espaçamentos** - xs, sm, md, lg, xl, xxl
+-   **Tipografia** - Font sizes e weights
+-   **Border radius** - Cantos arredondados
+
+## 🚀 Vantagens
+
+-   ✅ **Cross-platform** - Mesma API entre Web e RN
+-   ✅ **TypeScript** - Type safety completo
+-   ✅ **Design Tokens** - Consistência garantida
+-   ✅ **Storybook** - Documentação visual
+-   ✅ **Monorepo** - Versionamento unificado

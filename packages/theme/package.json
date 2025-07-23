@@ -1,0 +1,12 @@
+{
+  "name": "@meu-escopo/theme",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@shopify/restyle": "^2.4.5"
+  }
+}

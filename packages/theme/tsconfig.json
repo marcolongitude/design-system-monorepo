@@ -1,0 +1,14 @@
+{
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"outDir": "dist",
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"emitDeclarationOnly": false,
+		"declaration": true,
+		"module": "ESNext",
+		"target": "ES2019"
+	},
+	"include": ["src/**/*"],
+	"exclude": ["dist", "node_modules"]
+}
