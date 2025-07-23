@@ -1,11 +1,19 @@
 import type { StorybookConfig } from "@storybook/react-vite";
 import { resolve } from "path";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
 
-// Definir __dirname para compatibilidade ESM
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// Função para obter __dirname de forma compatível
+const getDirname = () => {
+	try {
+		const { fileURLToPath } = require("url");
+		const { dirname } = require("path");
+		return dirname(fileURLToPath(import.meta.url));
+	} catch {
+		// Fallback usando process.cwd() se import.meta.url não estiver disponível
+		return process.cwd() + "/.storybook";
+	}
+};
+
+const currentDir = getDirname();
 
 const config: StorybookConfig = {
 	stories: ["../packages/*/src/**/*.stories.@(js|jsx|mjs|ts|tsx|mdx)", "../.storybook/*.stories.mdx"],
@@ -25,9 +33,9 @@ const config: StorybookConfig = {
 			// Alias para React Native Web
 			"react-native": "react-native-web",
 			// Aliases para os workspaces do monorepo usando caminhos relativos
-			"@meu-escopo/theme": resolve(__dirname, "../packages/theme/src"),
-			"@meu-escopo/react-native-components": resolve(__dirname, "../packages/react-native-components/src"),
-			"@meu-escopo/web-components": resolve(__dirname, "../packages/web-components/src"),
+			"@meu-escopo/theme": resolve(currentDir, "../packages/theme/src"),
+			"@meu-escopo/react-native-components": resolve(currentDir, "../packages/react-native-components/src"),
+			"@meu-escopo/web-components": resolve(currentDir, "../packages/web-components/src"),
 		};
 
 		// Extensões para resolver arquivos web primeiro
