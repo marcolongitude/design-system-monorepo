@@ -1,8 +1,9 @@
 import type { StorybookConfig } from "@storybook/react-vite";
+import { resolve } from "path";
 import { fileURLToPath } from "url";
-import { dirname, resolve } from "path";
+import { dirname } from "path";
 
-// Compatibilidade com ES modules
+// Definir __dirname para compatibilidade ESM
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -23,15 +24,10 @@ const config: StorybookConfig = {
 			...config.resolve.alias,
 			// Alias para React Native Web
 			"react-native": "react-native-web",
-			// Aliases para os workspaces do monorepo usando caminhos absolutos
+			// Aliases para os workspaces do monorepo usando caminhos relativos
 			"@meu-escopo/theme": resolve(__dirname, "../packages/theme/src"),
 			"@meu-escopo/react-native-components": resolve(__dirname, "../packages/react-native-components/src"),
 			"@meu-escopo/web-components": resolve(__dirname, "../packages/web-components/src"),
-			// Evitar problemas com normalizeColor
-			"@react-native/normalize-colors": resolve(
-				__dirname,
-				"../node_modules/react-native-web/dist/cjs/modules/normalizeColor"
-			),
 		};
 
 		// Extensões para resolver arquivos web primeiro
@@ -56,7 +52,7 @@ const config: StorybookConfig = {
 			"process.env.REACT_NATIVE": JSON.stringify(false),
 		};
 
-		// Configuração otimizada para dependências - removendo restyle para evitar conflitos
+		// Configuração otimizada para dependências
 		config.optimizeDeps = config.optimizeDeps || {};
 		config.optimizeDeps.include = [...(config.optimizeDeps.include || []), "react-native-web"];
 		config.optimizeDeps.exclude = [

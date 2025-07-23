@@ -5,8 +5,11 @@
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"strict": false,
-		"jsx": "react-jsx"
+		"jsx": "react-jsx",
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"target": "ES2020"
 	},
-	"include": ["../stories/**/*", "../packages/*/src/**/*"],
+	"include": ["../stories/**/*", "../packages/*/src/**/*", "./**/*"],
 	"exclude": ["../node_modules"]
 }
