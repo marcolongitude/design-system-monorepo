@@ -16,9 +16,12 @@
 		"moduleResolution": "node",
 		"module": "ESNext",
 		"target": "ES2019",
-		"jsx": "react"
+		"jsx": "react",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"types": ["jest", "@testing-library/jest-dom", "node"]
 	},
-	"include": ["packages/*/src"],
+	"include": ["packages/*/src", "**/*.test.ts", "**/*.test.tsx"],
 	"references": [
 		{ "path": "./packages/theme" },
 		{ "path": "./packages/web-components" },
