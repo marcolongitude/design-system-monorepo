@@ -10,6 +10,11 @@ permissions:
     contents: read
     pages: write
     id-token: write
+    deployments: write
+    statuses: write
+    checks: write
+    actions: read
+    repository-projects: read
 
 jobs:
     test:
@@ -88,9 +93,6 @@ jobs:
 
             - name: 🔧 Setup Pages
               uses: actions/configure-pages@v4
-              with:
-                  # Tentar habilitar Pages automaticamente se não estiver habilitado
-                  enablement: true
 
             - name: 📤 Upload artifact
               uses: actions/upload-pages-artifact@v3
@@ -100,6 +102,3 @@ jobs:
             - name: 🚀 Deploy to GitHub Pages
               id: deployment
               uses: actions/deploy-pages@v4
-              with:
-                  # Tentar habilitar Pages automaticamente se não estiver habilitado
-                  enablement: true
