@@ -62,6 +62,25 @@ module.exports = {
 			],
 		},
 		{
+			displayName: "react-native-components-node",
+			testMatch: ["<rootDir>/packages/react-native-components/**/*.node.test.{ts,tsx}"],
+			testEnvironment: "node",
+			setupFilesAfterEnv: ["<rootDir>/jest.setup.native.js"],
+			moduleNameMapper: {
+				"^@meu-escopo/theme$": "<rootDir>/packages/theme/src",
+				"^@meu-escopo/react-native-components$": "<rootDir>/packages/react-native-components/src",
+			},
+			transform: {
+				"^.+\\.(ts|tsx)$": "ts-jest",
+			},
+			moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
+			collectCoverageFrom: [
+				"packages/react-native-components/src/**/*.{ts,tsx}",
+				"!packages/react-native-components/src/**/*.stories.{ts,tsx}",
+				"!packages/react-native-components/src/**/*.d.ts",
+			],
+		},
+		{
 			displayName: "theme",
 			testMatch: ["<rootDir>/packages/theme/**/*.test.{ts,tsx}"],
 			testEnvironment: "node",

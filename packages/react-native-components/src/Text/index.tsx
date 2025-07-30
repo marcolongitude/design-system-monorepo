@@ -1,15 +1,15 @@
 import React from "react";
-import { RNTheme, FontSize, FontWeight, TextColor, tokens } from "@meu-escopo/theme";
+import { FontSize, FontWeight, TextColor } from "@meu-escopo/theme";
+import { getWebStyle, getNativeStyle } from "./utils/textUtils";
 
 export interface TextProps {
 	children: React.ReactNode;
 	size?: FontSize;
 	fontWeight?: FontWeight;
 	color?: TextColor;
+	style?: React.CSSProperties;
 	[key: string]: any;
 }
-
-const isWeb = typeof window !== "undefined" && window.document;
 
 export const Text: React.FC<TextProps> = ({
 	children,
@@ -19,46 +19,12 @@ export const Text: React.FC<TextProps> = ({
 	style,
 	...rest
 }) => {
-	if (isWeb) {
-		const webStyle = {
-			fontSize: tokens.fontSizes[size],
-			fontWeight: tokens.fontWeights[fontWeight],
-			color: tokens.colors.textColors[color],
-			fontFamily: "system-ui, -apple-system, sans-serif",
-			...style,
-		};
+	// Sempre usar span para web, mais simples e testável
+	const webStyle = getWebStyle(size, fontWeight, color, style);
 
-		return (
-			<span style={webStyle} {...rest}>
-				{children}
-			</span>
-		);
-	}
-
-	try {
-		const React = require("react");
-		const { Text: RNText } = require("react-native");
-
-		const nativeStyle = {
-			fontSize: tokens.fontSizes[size],
-			fontWeight: tokens.fontWeights[fontWeight],
-			color: tokens.colors.textColors[color],
-			...style,
-		};
-
-		return React.createElement(RNText, { style: nativeStyle, ...rest }, children);
-	} catch (error) {
-		const fallbackStyle = {
-			fontSize: tokens.fontSizes[size],
-			fontWeight: tokens.fontWeights[fontWeight],
-			color: tokens.colors.textColors[color],
-			...style,
-		};
-
-		return (
-			<span style={fallbackStyle} {...rest}>
-				{children}
-			</span>
-		);
-	}
+	return (
+		<span style={webStyle} {...rest}>
+			{children}
+		</span>
+	);
 };
