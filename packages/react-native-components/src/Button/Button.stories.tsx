@@ -1,5 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { View, Text } from "react-native";
 import { Button } from ".";
 
 // Ícones de exemplo para demonstrar os ícones
@@ -28,7 +29,7 @@ const ArrowRightIcon = () => (
 );
 
 const meta: Meta<typeof Button> = {
-	title: "Web Components/Button",
+	title: "React Native Components/Button",
 	component: Button,
 	parameters: {
 		layout: "centered",
@@ -70,9 +71,9 @@ const meta: Meta<typeof Button> = {
 			control: "text",
 			description: "Texto exibido durante o loading. Se null, mantém o children original",
 		},
-		onClick: {
-			action: "clicked",
-			description: "Função chamada quando o botão é clicado",
+		onPress: {
+			action: "pressed",
+			description: "Função chamada quando o botão é pressionado",
 		},
 	},
 };
@@ -210,19 +211,19 @@ export const LoadingWithoutCustomText: Story = {
 // Exemplo mostrando todas as variantes
 export const AllVariants: Story = {
 	render: () => (
-		<div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
+		<View style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "flex-start" }}>
 			<Button variant="save">Salvar</Button>
 			<Button variant="warning">Atenção</Button>
 			<Button variant="delete">Excluir</Button>
 			<Button variant="default">Padrão</Button>
-		</div>
+		</View>
 	),
 };
 
 // Exemplo mostrando todos os tamanhos
 export const AllSizes: Story = {
 	render: () => (
-		<div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
+		<View style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "flex-start" }}>
 			<Button size="small" variant="save">
 				Pequeno
 			</Button>
@@ -232,14 +233,14 @@ export const AllSizes: Story = {
 			<Button size="large" variant="save">
 				Grande
 			</Button>
-		</div>
+		</View>
 	),
 };
 
 // Exemplo mostrando todos os tamanhos de ícone
 export const AllIconSizes: Story = {
 	render: () => (
-		<div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
+		<View style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "flex-start" }}>
 			<Button iconSize="small" startIcon={<SaveIcon />}>
 				Ícone Pequeno
 			</Button>
@@ -249,14 +250,14 @@ export const AllIconSizes: Story = {
 			<Button iconSize="large" startIcon={<SaveIcon />}>
 				Ícone Grande
 			</Button>
-		</div>
+		</View>
 	),
 };
 
 // Exemplo mostrando estados diferentes
 export const AllStates: Story = {
 	render: () => (
-		<div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
+		<View style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "flex-start" }}>
 			<Button variant="save">Normal</Button>
 			<Button variant="save" disabled>
 				Desabilitado
@@ -267,14 +268,14 @@ export const AllStates: Story = {
 			<Button variant="save" fullWidth>
 				Largura Total
 			</Button>
-		</div>
+		</View>
 	),
 };
 
 // Exemplo combinando diferentes propriedades
 export const CombinedProps: Story = {
 	render: () => (
-		<div style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "flex-start" }}>
+		<View style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "flex-start" }}>
 			<Button variant="save" size="large" iconSize="large" startIcon={<SaveIcon />} endIcon={<ArrowRightIcon />}>
 				Salvar e Continuar
 			</Button>
@@ -290,51 +291,56 @@ export const CombinedProps: Story = {
 			<Button variant="default" size="medium" fullWidth endIcon={<ArrowRightIcon />}>
 				Próximo Passo
 			</Button>
-		</div>
+		</View>
 	),
 };
 
 // Exemplo de uso em contexto
 export const UsageContext: Story = {
 	render: () => (
-		<div
+		<View
 			style={{
 				display: "flex",
 				flexDirection: "column",
-				gap: "20px",
-				maxWidth: "400px",
-				padding: "20px",
-				border: "1px solid #e0e0e0",
-				borderRadius: "8px",
+				gap: 20,
+				maxWidth: 400,
+				padding: 20,
+				borderWidth: 1,
+				borderColor: "#e0e0e0",
+				borderRadius: 8,
 			}}
 		>
-			<h3 style={{ margin: "0 0 16px 0", color: "#333" }}>Formulário de Exemplo</h3>
+			<View style={{ marginBottom: 16 }}>
+				<Text style={{ fontSize: 18, fontWeight: "bold", color: "#333" }}>Formulário de Exemplo</Text>
+			</View>
 
-			<div style={{ display: "flex", gap: "8px", justifyContent: "flex-end" }}>
+			<View style={{ display: "flex", flexDirection: "row", gap: 8, justifyContent: "flex-end" }}>
 				<Button variant="default" size="small">
 					Cancelar
 				</Button>
 				<Button variant="save" size="small" startIcon={<SaveIcon />}>
 					Salvar
 				</Button>
-			</div>
+			</View>
 
-			<div
+			<View
 				style={{
 					display: "flex",
 					flexDirection: "column",
-					gap: "12px",
-					marginTop: "20px",
-					padding: "16px",
+					gap: 12,
+					marginTop: 20,
+					padding: 16,
 					backgroundColor: "#f5f5f5",
-					borderRadius: "4px",
+					borderRadius: 4,
 				}}
 			>
-				<h4 style={{ margin: "0 0 12px 0", color: "#666" }}>Ações Destrutivas</h4>
+				<Text style={{ marginBottom: 12, fontSize: 16, fontWeight: "bold", color: "#666" }}>
+					Ações Destrutivas
+				</Text>
 				<Button variant="delete" size="small" startIcon={<DeleteIcon />} fullWidth>
 					Excluir Item
 				</Button>
-			</div>
-		</div>
+			</View>
+		</View>
 	),
 };

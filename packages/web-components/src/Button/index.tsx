@@ -10,6 +10,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	onClick?: () => void;
 	fullWidth?: boolean;
 	loading?: boolean;
+	loadingText?: string | null;
 	endIcon?: React.ReactNode;
 	startIcon?: React.ReactNode;
 	iconSize?: "small" | "medium" | "large";
@@ -94,6 +95,25 @@ const getIconSize = (iconSize: string) => {
 	}
 };
 
+// Componente de spinner para web
+const Spinner = styled.div<{ size: string; color: string }>`
+	width: ${({ size }) => getIconSize(size)};
+	height: ${({ size }) => getIconSize(size)};
+	border: 2px solid transparent;
+	border-top: 2px solid ${({ color }) => color};
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+
+	@keyframes spin {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+`;
+
 export const Button = ({
 	children,
 	variant = "default",
@@ -102,12 +122,15 @@ export const Button = ({
 	onClick,
 	fullWidth = false,
 	loading = false,
+	loadingText = null,
 	endIcon,
 	startIcon,
 	iconSize = "medium",
 	iconBackgroundColor,
 	...props
 }: ButtonProps) => {
+	const colors = getVariantColors(variant, disabled);
+
 	return (
 		<ButtonStyled
 			variant={variant}
@@ -117,9 +140,13 @@ export const Button = ({
 			fullWidth={fullWidth}
 			{...props}
 		>
-			{startIcon && <IconWrapper iconSize={iconSize}>{startIcon}</IconWrapper>}
-			{children}
-			{endIcon && <IconWrapper iconSize={iconSize}>{endIcon}</IconWrapper>}
+			{loading ? (
+				<Spinner size={iconSize} color={colors.color} />
+			) : (
+				startIcon && <IconWrapper iconSize={iconSize}>{startIcon}</IconWrapper>
+			)}
+			{loading ? loadingText || children : children}
+			{!loading && endIcon && <IconWrapper iconSize={iconSize}>{endIcon}</IconWrapper>}
 		</ButtonStyled>
 	);
 };
