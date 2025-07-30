@@ -1,8 +1,8 @@
 import { getVariantColors, getSizeStyles, getIconSize } from "./buttonUtils";
 
-describe("Button Utils (Web)", () => {
+describe("Utilitários do Botão (Web)", () => {
 	describe("getVariantColors", () => {
-		it("should return disabled colors when disabled is true", () => {
+		it("deve retornar cores desabilitadas quando disabled é true", () => {
 			const result = getVariantColors("save", true);
 			expect(result).toEqual({
 				backgroundColor: "#F3F4F6", // colorSchema.gray[200]
@@ -11,7 +11,7 @@ describe("Button Utils (Web)", () => {
 			});
 		});
 
-		it("should return save variant colors when disabled is false", () => {
+		it("deve retornar cores da variante save quando disabled é false", () => {
 			const result = getVariantColors("save", false);
 			expect(result).toEqual({
 				backgroundColor: "#3B82F6", // colorSchema.blue[500]
@@ -20,7 +20,7 @@ describe("Button Utils (Web)", () => {
 			});
 		});
 
-		it("should return warning variant colors", () => {
+		it("deve retornar cores da variante warning", () => {
 			const result = getVariantColors("warning", false);
 			expect(result).toEqual({
 				backgroundColor: "#F97316", // colorSchema.orange[500]
@@ -29,7 +29,7 @@ describe("Button Utils (Web)", () => {
 			});
 		});
 
-		it("should return delete variant colors", () => {
+		it("deve retornar cores da variante delete", () => {
 			const result = getVariantColors("delete", false);
 			expect(result).toEqual({
 				backgroundColor: "#EF4444", // colorSchema.red[500]
@@ -38,7 +38,7 @@ describe("Button Utils (Web)", () => {
 			});
 		});
 
-		it("should return default variant colors", () => {
+		it("deve retornar cores da variante padrão", () => {
 			const result = getVariantColors("default", false);
 			expect(result).toEqual({
 				backgroundColor: "transparent",
@@ -47,7 +47,7 @@ describe("Button Utils (Web)", () => {
 			});
 		});
 
-		it("should return default variant colors for unknown variant", () => {
+		it("deve retornar cores da variante padrão para variante desconhecida", () => {
 			const result = getVariantColors("unknown" as any, false);
 			expect(result).toEqual({
 				backgroundColor: "transparent",
@@ -56,7 +56,7 @@ describe("Button Utils (Web)", () => {
 			});
 		});
 
-		it("should return disabled colors for any variant when disabled is true", () => {
+		it("deve retornar cores desabilitadas para qualquer variante quando disabled é true", () => {
 			const variants = ["save", "warning", "delete", "default", "unknown"];
 			variants.forEach((variant) => {
 				const result = getVariantColors(variant, true);
@@ -70,7 +70,7 @@ describe("Button Utils (Web)", () => {
 	});
 
 	describe("getSizeStyles", () => {
-		it("should return small size styles", () => {
+		it("deve retornar estilos de tamanho pequeno", () => {
 			const result = getSizeStyles("small");
 			expect(result).toEqual({
 				padding: "4px 12px",
@@ -79,7 +79,7 @@ describe("Button Utils (Web)", () => {
 			});
 		});
 
-		it("should return medium size styles", () => {
+		it("deve retornar estilos de tamanho médio", () => {
 			const result = getSizeStyles("medium");
 			expect(result).toEqual({
 				padding: "8px 16px",
@@ -88,7 +88,7 @@ describe("Button Utils (Web)", () => {
 			});
 		});
 
-		it("should return large size styles", () => {
+		it("deve retornar estilos de tamanho grande", () => {
 			const result = getSizeStyles("large");
 			expect(result).toEqual({
 				padding: "12px 24px",
@@ -97,7 +97,7 @@ describe("Button Utils (Web)", () => {
 			});
 		});
 
-		it("should return medium size styles for unknown size", () => {
+		it("deve retornar estilos de tamanho médio para tamanho desconhecido", () => {
 			const result = getSizeStyles("unknown" as any);
 			expect(result).toEqual({
 				padding: "8px 16px",
@@ -108,22 +108,22 @@ describe("Button Utils (Web)", () => {
 	});
 
 	describe("getIconSize", () => {
-		it("should return small icon size", () => {
+		it("deve retornar tamanho de ícone pequeno", () => {
 			const result = getIconSize("small");
 			expect(result).toBe("12px");
 		});
 
-		it("should return medium icon size", () => {
+		it("deve retornar tamanho de ícone médio", () => {
 			const result = getIconSize("medium");
 			expect(result).toBe("16px");
 		});
 
-		it("should return large icon size", () => {
+		it("deve retornar tamanho de ícone grande", () => {
 			const result = getIconSize("large");
 			expect(result).toBe("24px");
 		});
 
-		it("should return medium icon size for unknown size", () => {
+		it("deve retornar tamanho de ícone médio para tamanho desconhecido", () => {
 			const result = getIconSize("unknown" as any);
 			expect(result).toBe("16px");
 		});

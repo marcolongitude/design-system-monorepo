@@ -29,13 +29,13 @@ jest.mock("@meu-escopo/theme", () => ({
 	},
 }));
 
-describe("Text Component (React Native via Web)", () => {
-	it("renders correctly with default props", () => {
+describe("Componente Text (React Native via Web)", () => {
+	it("renderiza corretamente com props padrão", () => {
 		render(<Text>Default Text</Text>);
 		expect(screen.getByText("Default Text")).toBeTruthy();
 	});
 
-	it("renders with different sizes", () => {
+	it("renderiza com diferentes tamanhos", () => {
 		const sizes = ["xs", "sm", "md", "lg", "xl", "xxl"] as const;
 		sizes.forEach((size) => {
 			const { getByText } = render(<Text size={size}>{size} Text</Text>);
@@ -43,7 +43,7 @@ describe("Text Component (React Native via Web)", () => {
 		});
 	});
 
-	it("renders with different font weights", () => {
+	it("renderiza com diferentes pesos de fonte", () => {
 		const weights = ["normal", "medium", "semibold", "bold"] as const;
 		weights.forEach((weight) => {
 			const { getByText } = render(<Text fontWeight={weight}>{weight} Text</Text>);
@@ -51,7 +51,7 @@ describe("Text Component (React Native via Web)", () => {
 		});
 	});
 
-	it("renders with different colors", () => {
+	it("renderiza com diferentes cores", () => {
 		const colors = ["primary", "secondary", "tertiary", "muted"] as const;
 		colors.forEach((color) => {
 			const { getByText } = render(<Text color={color}>{color} Text</Text>);
@@ -59,13 +59,13 @@ describe("Text Component (React Native via Web)", () => {
 		});
 	});
 
-	it("renders with custom style", () => {
+	it("renderiza com estilo personalizado", () => {
 		const customStyle = { marginTop: 10, textAlign: "center" as const };
 		const { getByText } = render(<Text style={customStyle}>Custom Style Text</Text>);
 		expect(getByText("Custom Style Text")).toBeTruthy();
 	});
 
-	it("renders with additional props", () => {
+	it("renderiza com props adicionais", () => {
 		const { getByText } = render(
 			<Text testID="custom-text" numberOfLines={2}>
 				Additional Props Text
@@ -74,7 +74,7 @@ describe("Text Component (React Native via Web)", () => {
 		expect(getByText("Additional Props Text")).toBeTruthy();
 	});
 
-	it("renders with accessibility props", () => {
+	it("renderiza com props de acessibilidade", () => {
 		const { getByText } = render(
 			<Text accessibilityRole="header" accessibilityLabel="Header Text">
 				Accessible Text
@@ -83,7 +83,7 @@ describe("Text Component (React Native via Web)", () => {
 		expect(getByText("Accessible Text")).toBeTruthy();
 	});
 
-	it("renders with all props combined", () => {
+	it("renderiza com todas as props combinadas", () => {
 		const { getByText } = render(
 			<Text size="lg" fontWeight="bold" color="secondary" style={{ marginBottom: 10 }} testID="combined-text">
 				Combined Props Text
@@ -92,7 +92,7 @@ describe("Text Component (React Native via Web)", () => {
 		expect(getByText("Combined Props Text")).toBeTruthy();
 	});
 
-	it("renders with undefined props", () => {
+	it("renderiza com props indefinidas", () => {
 		const { getByText } = render(
 			<Text size={undefined} fontWeight={undefined} color={undefined}>
 				Undefined Props Text
@@ -101,7 +101,7 @@ describe("Text Component (React Native via Web)", () => {
 		expect(getByText("Undefined Props Text")).toBeTruthy();
 	});
 
-	it("renders with null props", () => {
+	it("renderiza com props nulas", () => {
 		const { getByText } = render(
 			<Text size={null as any} fontWeight={null as any} color={null as any}>
 				Null Props Text
@@ -110,17 +110,17 @@ describe("Text Component (React Native via Web)", () => {
 		expect(getByText("Null Props Text")).toBeTruthy();
 	});
 
-	it("renders with empty string children", () => {
+	it("renderiza com filhos de string vazia", () => {
 		const { container } = render(<Text>{""}</Text>);
 		expect(container.firstChild).toBeTruthy();
 	});
 
-	it("renders with number children", () => {
+	it("renderiza com filhos numéricos", () => {
 		const { getByText } = render(<Text>{42}</Text>);
 		expect(getByText("42")).toBeTruthy();
 	});
 
-	it("renders with React element children", () => {
+	it("renderiza com filhos de elemento React", () => {
 		const ChildComponent = () => <span>Child Component</span>;
 		const { getByText } = render(
 			<Text>
@@ -130,7 +130,7 @@ describe("Text Component (React Native via Web)", () => {
 		expect(getByText("Child Component")).toBeTruthy();
 	});
 
-	it("renders with complex nested children", () => {
+	it("renderiza com filhos aninhados complexos", () => {
 		const { getByText, container } = render(
 			<Text>
 				<span>Nested</span> <strong>Complex</strong> Text
@@ -141,7 +141,7 @@ describe("Text Component (React Native via Web)", () => {
 		expect(container.textContent).toContain("Nested Complex Text");
 	});
 
-	it("renders with spread props", () => {
+	it("renderiza com props espalhadas", () => {
 		const additionalProps = {
 			onPress: () => {},
 			onLongPress: () => {},
@@ -151,7 +151,7 @@ describe("Text Component (React Native via Web)", () => {
 		expect(getByText("Spread Props Text")).toBeTruthy();
 	});
 
-	it("renders with all possible size combinations", () => {
+	it("renderiza com todas as combinações possíveis de tamanho", () => {
 		const sizes = ["xs", "sm", "md", "lg", "xl", "xxl"] as const;
 		const weights = ["normal", "medium", "semibold", "bold"] as const;
 		const colors = ["primary", "secondary", "tertiary", "muted"] as const;
@@ -170,7 +170,7 @@ describe("Text Component (React Native via Web)", () => {
 		});
 	});
 
-	it("renders with edge case styles", () => {
+	it("renderiza com estilos de casos extremos", () => {
 		const edgeCaseStyles = [
 			{},
 			{ fontSize: 0 },
@@ -187,7 +187,7 @@ describe("Text Component (React Native via Web)", () => {
 		});
 	});
 
-	it("renders with mixed content types", () => {
+	it("renderiza com tipos de conteúdo mistos", () => {
 		const { getByText, container } = render(
 			<Text>
 				Text with <strong>bold</strong> and <em>italic</em> content
@@ -199,7 +199,7 @@ describe("Text Component (React Native via Web)", () => {
 	});
 
 	// Testes específicos para cobrir o bloco try/catch (linhas 38-58)
-	it("handles require errors gracefully", () => {
+	it("lida graciosamente com erros de require", () => {
 		// Mock require to throw an error to test the catch block
 		const originalRequire = global.require;
 		(global.require as any) = jest.fn().mockImplementation((module: string) => {
@@ -216,7 +216,7 @@ describe("Text Component (React Native via Web)", () => {
 		global.require = originalRequire;
 	});
 
-	it("handles React require errors", () => {
+	it("lida com erros de require do React", () => {
 		// Mock React require to throw an error
 		const originalRequire = global.require;
 		(global.require as any) = jest.fn().mockImplementation((module: string) => {
@@ -233,7 +233,7 @@ describe("Text Component (React Native via Web)", () => {
 		global.require = originalRequire;
 	});
 
-	it("handles both React and react-native require errors", () => {
+	it("lida com erros de require do React e react-native", () => {
 		// Mock both requires to throw errors
 		const originalRequire = global.require;
 		(global.require as any) = jest.fn().mockImplementation((module: string) => {
@@ -250,7 +250,7 @@ describe("Text Component (React Native via Web)", () => {
 		global.require = originalRequire;
 	});
 
-	it("handles different error types in require", () => {
+	it("lida com diferentes tipos de erro no require", () => {
 		// Mock require to throw different types of errors
 		const originalRequire = global.require;
 		(global.require as any) = jest.fn().mockImplementation((module: string) => {
@@ -267,7 +267,7 @@ describe("Text Component (React Native via Web)", () => {
 		global.require = originalRequire;
 	});
 
-	it("handles undefined require result", () => {
+	it("lida com resultado indefinido do require", () => {
 		// Mock require to return undefined
 		const originalRequire = global.require;
 		(global.require as any) = jest.fn().mockImplementation((module: string) => {
@@ -284,7 +284,7 @@ describe("Text Component (React Native via Web)", () => {
 		global.require = originalRequire;
 	});
 
-	it("handles null require result", () => {
+	it("lida com resultado nulo do require", () => {
 		// Mock require to return null
 		const originalRequire = global.require;
 		(global.require as any) = jest.fn().mockImplementation((module: string) => {
@@ -301,7 +301,7 @@ describe("Text Component (React Native via Web)", () => {
 		global.require = originalRequire;
 	});
 
-	it("handles malformed react-native module", () => {
+	it("lida com módulo react-native malformado", () => {
 		// Mock require to return malformed react-native module
 		const originalRequire = global.require;
 		(global.require as any) = jest.fn().mockImplementation((module) => {
@@ -318,7 +318,7 @@ describe("Text Component (React Native via Web)", () => {
 		global.require = originalRequire;
 	});
 
-	it("handles react-native module without Text property", () => {
+	it("lida com módulo react-native sem propriedade Text", () => {
 		// Mock require to return react-native module without Text property
 		const originalRequire = global.require;
 		(global.require as any) = jest.fn().mockImplementation((module) => {
@@ -335,7 +335,7 @@ describe("Text Component (React Native via Web)", () => {
 		global.require = originalRequire;
 	});
 
-	it("handles react-native module with undefined Text", () => {
+	it("lida com módulo react-native com Text indefinido", () => {
 		// Mock require to return react-native module with undefined Text
 		const originalRequire = global.require;
 		(global.require as any) = jest.fn().mockImplementation((module) => {
@@ -352,7 +352,7 @@ describe("Text Component (React Native via Web)", () => {
 		global.require = originalRequire;
 	});
 
-	it("handles react-native module with falsy Text", () => {
+	it("lida com módulo react-native com Text falso", () => {
 		// Mock require to return react-native module with falsy Text
 		const originalRequire = global.require;
 		(global.require as any) = jest.fn().mockImplementation((module) => {
@@ -369,7 +369,7 @@ describe("Text Component (React Native via Web)", () => {
 		global.require = originalRequire;
 	});
 
-	it("handles react-native module with empty string Text", () => {
+	it("lida com módulo react-native com Text de string vazia", () => {
 		// Mock require to return react-native module with empty string Text
 		const originalRequire = global.require;
 		(global.require as any) = jest.fn().mockImplementation((module) => {
@@ -386,7 +386,7 @@ describe("Text Component (React Native via Web)", () => {
 		global.require = originalRequire;
 	});
 
-	it("handles react-native module with zero Text", () => {
+	it("lida com módulo react-native com Text zero", () => {
 		// Mock require to return react-native module with zero Text
 		const originalRequire = global.require;
 		(global.require as any) = jest.fn().mockImplementation((module) => {
@@ -403,7 +403,7 @@ describe("Text Component (React Native via Web)", () => {
 		global.require = originalRequire;
 	});
 
-	it("handles react-native module with NaN Text", () => {
+	it("lida com módulo react-native com Text NaN", () => {
 		// Mock require to return react-native module with NaN Text
 		const originalRequire = global.require;
 		(global.require as any) = jest.fn().mockImplementation((module) => {
@@ -420,7 +420,7 @@ describe("Text Component (React Native via Web)", () => {
 		global.require = originalRequire;
 	});
 
-	it("handles react-native module with function Text", () => {
+	it("lida com módulo react-native com Text função", () => {
 		// Mock require to return react-native module with function Text
 		const originalRequire = global.require;
 		(global.require as any) = jest.fn().mockImplementation((module) => {
@@ -437,7 +437,7 @@ describe("Text Component (React Native via Web)", () => {
 		global.require = originalRequire;
 	});
 
-	it("handles react-native module with object Text", () => {
+	it("lida com módulo react-native com Text objeto", () => {
 		// Mock require to return react-native module with object Text
 		const originalRequire = global.require;
 		(global.require as any) = jest.fn().mockImplementation((module) => {
@@ -454,7 +454,7 @@ describe("Text Component (React Native via Web)", () => {
 		global.require = originalRequire;
 	});
 
-	it("handles react-native module with array Text", () => {
+	it("lida com módulo react-native com Text array", () => {
 		// Mock require to return react-native module with array Text
 		const originalRequire = global.require;
 		(global.require as any) = jest.fn().mockImplementation((module) => {
@@ -471,7 +471,7 @@ describe("Text Component (React Native via Web)", () => {
 		global.require = originalRequire;
 	});
 
-	it("handles react-native module with symbol Text", () => {
+	it("lida com módulo react-native com Text símbolo", () => {
 		// Mock require to return react-native module with symbol Text
 		const originalRequire = global.require;
 		(global.require as any) = jest.fn().mockImplementation((module) => {

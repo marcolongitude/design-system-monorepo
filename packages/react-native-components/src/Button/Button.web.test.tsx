@@ -3,37 +3,37 @@ import { render, fireEvent } from "@testing-library/react";
 import { Button } from ".";
 
 describe("Button React Native (via Web)", () => {
-	it("renders correctly with default props", () => {
+	it("renderiza corretamente com props padrão", () => {
 		const { getByText } = render(<Button>Test Button</Button>);
 		expect(getByText("Test Button")).toBeTruthy();
 	});
 
-	it("renders with different variants", () => {
+	it("renderiza com diferentes variantes", () => {
 		const { getByText } = render(<Button variant="save">Save</Button>);
 		expect(getByText("Save")).toBeTruthy();
 	});
 
-	it("renders with warning variant", () => {
+	it("renderiza com variante de aviso", () => {
 		const { getByText } = render(<Button variant="warning">Warning</Button>);
 		expect(getByText("Warning")).toBeTruthy();
 	});
 
-	it("renders with delete variant", () => {
+	it("renderiza com variante de exclusão", () => {
 		const { getByText } = render(<Button variant="delete">Delete</Button>);
 		expect(getByText("Delete")).toBeTruthy();
 	});
 
-	it("renders with different sizes", () => {
+	it("renderiza com diferentes tamanhos", () => {
 		const { getByText } = render(<Button size="small">Small</Button>);
 		expect(getByText("Small")).toBeTruthy();
 	});
 
-	it("renders with large size", () => {
+	it("renderiza com tamanho grande", () => {
 		const { getByText } = render(<Button size="large">Large</Button>);
 		expect(getByText("Large")).toBeTruthy();
 	});
 
-	it("renders with different icon sizes", () => {
+	it("renderiza com diferentes tamanhos de ícone", () => {
 		const TestIcon = () => <div data-testid="test-icon">Icon</div>;
 		const { getByText, getByTestId } = render(
 			<Button startIcon={<TestIcon />} iconSize="small">
@@ -44,7 +44,7 @@ describe("Button React Native (via Web)", () => {
 		expect(getByTestId("test-icon")).toBeTruthy();
 	});
 
-	it("renders with large icon size", () => {
+	it("renderiza com tamanho de ícone grande", () => {
 		const TestIcon = () => <div data-testid="test-icon">Icon</div>;
 		const { getByText, getByTestId } = render(
 			<Button startIcon={<TestIcon />} iconSize="large">
@@ -55,7 +55,7 @@ describe("Button React Native (via Web)", () => {
 		expect(getByTestId("test-icon")).toBeTruthy();
 	});
 
-	it("handles disabled state", () => {
+	it("manipula estado desabilitado", () => {
 		const onPress = jest.fn();
 		const { getByText } = render(
 			<Button disabled onPress={onPress}>
@@ -68,7 +68,7 @@ describe("Button React Native (via Web)", () => {
 		expect(onPress).not.toHaveBeenCalled();
 	});
 
-	it("handles loading state", () => {
+	it("manipula estado de carregamento", () => {
 		const onPress = jest.fn();
 		const { getByText, getByTestId } = render(
 			<Button loading onPress={onPress}>
@@ -83,7 +83,7 @@ describe("Button React Native (via Web)", () => {
 		expect(spinner).toBeTruthy();
 	});
 
-	it("shows custom loading text when provided", () => {
+	it("mostra texto de carregamento personalizado quando fornecido", () => {
 		const { getByText } = render(
 			<Button loading loadingText="Salvando...">
 				Salvar
@@ -93,7 +93,7 @@ describe("Button React Native (via Web)", () => {
 		expect(getByText("Salvando...")).toBeTruthy();
 	});
 
-	it("handles press events when enabled", () => {
+	it("manipula eventos de pressionar quando habilitado", () => {
 		const onPress = jest.fn();
 		const { getByText } = render(<Button onPress={onPress}>Enabled Button</Button>);
 
@@ -102,7 +102,7 @@ describe("Button React Native (via Web)", () => {
 		expect(onPress).toHaveBeenCalledTimes(1);
 	});
 
-	it("renders with start icon", () => {
+	it("renderiza com ícone inicial", () => {
 		const TestIcon = () => <div data-testid="test-icon">Icon</div>;
 		const { getByText, getByTestId } = render(<Button startIcon={<TestIcon />}>Button with Icon</Button>);
 
@@ -110,7 +110,7 @@ describe("Button React Native (via Web)", () => {
 		expect(getByTestId("test-icon")).toBeTruthy();
 	});
 
-	it("renders with end icon", () => {
+	it("renderiza com ícone final", () => {
 		const TestIcon = () => <div data-testid="test-icon">Icon</div>;
 		const { getByText, getByTestId } = render(<Button endIcon={<TestIcon />}>Button with Icon</Button>);
 
@@ -118,12 +118,12 @@ describe("Button React Native (via Web)", () => {
 		expect(getByTestId("test-icon")).toBeTruthy();
 	});
 
-	it("applies fullWidth style when fullWidth prop is true", () => {
+	it("aplica estilo fullWidth quando a prop fullWidth é verdadeira", () => {
 		const { getByText } = render(<Button fullWidth>Full Width Button</Button>);
 		expect(getByText("Full Width Button")).toBeTruthy();
 	});
 
-	it("shows loading spinner instead of icons when loading", () => {
+	it("mostra spinner de carregamento em vez de ícones quando carregando", () => {
 		const TestIcon = () => <div data-testid="test-icon">Icon</div>;
 		const { queryByTestId, getByText, getByTestId } = render(
 			<Button loading startIcon={<TestIcon />} endIcon={<TestIcon />}>
@@ -137,7 +137,7 @@ describe("Button React Native (via Web)", () => {
 	});
 
 	// Testes adicionais para cobrir casos edge
-	it("handles disabled state with warning variant", () => {
+	it("manipula estado desabilitado com variante de aviso", () => {
 		const onPress = jest.fn();
 		const { getByText } = render(
 			<Button variant="warning" disabled onPress={onPress}>
@@ -150,7 +150,7 @@ describe("Button React Native (via Web)", () => {
 		expect(onPress).not.toHaveBeenCalled();
 	});
 
-	it("handles disabled state with delete variant", () => {
+	it("manipula estado desabilitado com variante de exclusão", () => {
 		const onPress = jest.fn();
 		const { getByText } = render(
 			<Button variant="delete" disabled onPress={onPress}>
@@ -163,7 +163,7 @@ describe("Button React Native (via Web)", () => {
 		expect(onPress).not.toHaveBeenCalled();
 	});
 
-	it("handles loading state with large size", () => {
+	it("manipula estado de carregamento com tamanho grande", () => {
 		const { getByText, getByTestId } = render(
 			<Button loading size="large">
 				Large Loading
@@ -174,7 +174,7 @@ describe("Button React Native (via Web)", () => {
 		expect(getByTestId("activity-indicator")).toBeTruthy();
 	});
 
-	it("handles loading state with small icon size", () => {
+	it("manipula estado de carregamento com tamanho de ícone pequeno", () => {
 		const { getByText, getByTestId } = render(
 			<Button loading iconSize="small">
 				Small Icon Loading
@@ -185,7 +185,7 @@ describe("Button React Native (via Web)", () => {
 		expect(getByTestId("activity-indicator")).toBeTruthy();
 	});
 
-	it("handles loading state with large icon size", () => {
+	it("manipula estado de carregamento com tamanho de ícone grande", () => {
 		const { getByText, getByTestId } = render(
 			<Button loading iconSize="large">
 				Large Icon Loading
@@ -196,7 +196,7 @@ describe("Button React Native (via Web)", () => {
 		expect(getByTestId("activity-indicator")).toBeTruthy();
 	});
 
-	it("renders with both start and end icons", () => {
+	it("renderiza com ícones inicial e final", () => {
 		const StartIcon = () => <div data-testid="start-icon">Start</div>;
 		const EndIcon = () => <div data-testid="end-icon">End</div>;
 		const { getByText, getByTestId } = render(
@@ -210,7 +210,7 @@ describe("Button React Native (via Web)", () => {
 		expect(getByTestId("end-icon")).toBeTruthy();
 	});
 
-	it("handles undefined onPress prop", () => {
+	it("manipula prop onPress indefinida", () => {
 		const { getByText } = render(<Button>No onPress</Button>);
 		const button = getByText("No onPress");
 		expect(button).toBeTruthy();
@@ -218,7 +218,7 @@ describe("Button React Native (via Web)", () => {
 		fireEvent.click(button);
 	});
 
-	it("handles null loadingText", () => {
+	it("manipula loadingText nulo", () => {
 		const { getByText } = render(
 			<Button loading loadingText={null}>
 				Original Text
@@ -227,7 +227,7 @@ describe("Button React Native (via Web)", () => {
 		expect(getByText("Original Text")).toBeTruthy();
 	});
 
-	it("handles empty string loadingText", () => {
+	it("manipula loadingText com string vazia", () => {
 		const { getByText } = render(
 			<Button loading loadingText="">
 				Original Text
@@ -236,7 +236,7 @@ describe("Button React Native (via Web)", () => {
 		expect(getByText("Original Text")).toBeTruthy();
 	});
 
-	it("handles disabled state with all variants", () => {
+	it("manipula estado desabilitado com todas as variantes", () => {
 		const variants = ["default", "save", "warning", "delete"] as const;
 		variants.forEach((variant) => {
 			const { getByText } = render(
@@ -248,7 +248,7 @@ describe("Button React Native (via Web)", () => {
 		});
 	});
 
-	it("handles disabled state with all sizes", () => {
+	it("manipula estado desabilitado com todos os tamanhos", () => {
 		const sizes = ["small", "medium", "large"] as const;
 		sizes.forEach((size) => {
 			const { getByText } = render(
@@ -260,7 +260,7 @@ describe("Button React Native (via Web)", () => {
 		});
 	});
 
-	it("handles disabled state with all icon sizes", () => {
+	it("manipula estado desabilitado com todos os tamanhos de ícone", () => {
 		const iconSizes = ["small", "medium", "large"] as const;
 		iconSizes.forEach((iconSize) => {
 			const TestIcon = () => <div data-testid={`test-icon-${iconSize}`}>Icon</div>;
@@ -274,7 +274,7 @@ describe("Button React Native (via Web)", () => {
 		});
 	});
 
-	it("handles explicit disabled true and false values", () => {
+	it("manipula valores explícitos de disabled verdadeiro e falso", () => {
 		// Teste com disabled = true
 		const { getByText: getByTextDisabled } = render(<Button disabled={true}>Explicitly Disabled</Button>);
 		expect(getByTextDisabled("Explicitly Disabled")).toBeTruthy();
@@ -284,7 +284,7 @@ describe("Button React Native (via Web)", () => {
 		expect(getByTextEnabled("Explicitly Enabled")).toBeTruthy();
 	});
 
-	it("handles disabled state with all combinations", () => {
+	it("manipula estado desabilitado com todas as combinações", () => {
 		const variants = ["default", "save", "warning", "delete"] as const;
 		const sizes = ["small", "medium", "large"] as const;
 

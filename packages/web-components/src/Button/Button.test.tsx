@@ -3,12 +3,12 @@ import { render, fireEvent } from "@testing-library/react";
 import { Button } from ".";
 
 describe("Button (Web)", () => {
-	it("renders correctly with default props", () => {
+	it("renderiza corretamente com props padrão", () => {
 		const { getByText } = render(<Button>Test Button</Button>);
 		expect(getByText("Test Button")).toBeTruthy();
 	});
 
-	it("renders with different variants", () => {
+	it("renderiza com diferentes variantes", () => {
 		const variants = ["save", "warning", "delete", "default"] as const;
 		variants.forEach((variant) => {
 			const { getByText } = render(<Button variant={variant}>{variant} Button</Button>);
@@ -16,7 +16,7 @@ describe("Button (Web)", () => {
 		});
 	});
 
-	it("renders with different sizes", () => {
+	it("renderiza com diferentes tamanhos", () => {
 		const sizes = ["small", "medium", "large"] as const;
 		sizes.forEach((size) => {
 			const { getByText } = render(<Button size={size}>{size} Button</Button>);
@@ -24,7 +24,7 @@ describe("Button (Web)", () => {
 		});
 	});
 
-	it("handles disabled state", () => {
+	it("manipula estado desabilitado", () => {
 		const onClick = jest.fn();
 		const { getByText } = render(
 			<Button disabled onClick={onClick}>
@@ -37,7 +37,7 @@ describe("Button (Web)", () => {
 		expect(onClick).not.toHaveBeenCalled();
 	});
 
-	it("handles loading state", () => {
+	it("manipula estado de carregamento", () => {
 		const onClick = jest.fn();
 		const { getByText } = render(
 			<Button loading onClick={onClick}>
@@ -50,7 +50,7 @@ describe("Button (Web)", () => {
 		expect(onClick).toHaveBeenCalledTimes(1);
 	});
 
-	it("shows custom loading text when provided", () => {
+	it("mostra texto de carregamento personalizado quando fornecido", () => {
 		const { getByText } = render(
 			<Button loading loadingText="Salvando...">
 				Salvar
@@ -60,7 +60,7 @@ describe("Button (Web)", () => {
 		expect(getByText("Salvando...")).toBeTruthy();
 	});
 
-	it("shows children when loadingText is null", () => {
+	it("mostra children quando loadingText é null", () => {
 		const { getByText } = render(
 			<Button loading loadingText={null}>
 				Original Text
@@ -70,7 +70,7 @@ describe("Button (Web)", () => {
 		expect(getByText("Original Text")).toBeTruthy();
 	});
 
-	it("shows children when loadingText is empty string", () => {
+	it("mostra children quando loadingText é string vazia", () => {
 		const { getByText } = render(
 			<Button loading loadingText="">
 				Original Text
@@ -80,7 +80,7 @@ describe("Button (Web)", () => {
 		expect(getByText("Original Text")).toBeTruthy();
 	});
 
-	it("handles click events when enabled", () => {
+	it("manipula eventos de clique quando habilitado", () => {
 		const onClick = jest.fn();
 		const { getByText } = render(<Button onClick={onClick}>Enabled Button</Button>);
 
@@ -89,7 +89,7 @@ describe("Button (Web)", () => {
 		expect(onClick).toHaveBeenCalledTimes(1);
 	});
 
-	it("renders with start icon", () => {
+	it("renderiza com ícone inicial", () => {
 		const TestIcon = () => <div data-testid="test-icon">Icon</div>;
 		const { getByText, getByTestId } = render(<Button startIcon={<TestIcon />}>Button with Icon</Button>);
 
@@ -97,7 +97,7 @@ describe("Button (Web)", () => {
 		expect(getByTestId("test-icon")).toBeTruthy();
 	});
 
-	it("renders with end icon", () => {
+	it("renderiza com ícone final", () => {
 		const TestIcon = () => <div data-testid="test-icon">Icon</div>;
 		const { getByText, getByTestId } = render(<Button endIcon={<TestIcon />}>Button with Icon</Button>);
 
@@ -105,7 +105,7 @@ describe("Button (Web)", () => {
 		expect(getByTestId("test-icon")).toBeTruthy();
 	});
 
-	it("renders with both start and end icons", () => {
+	it("renderiza com ícones inicial e final", () => {
 		const StartIcon = () => <div data-testid="start-icon">Start</div>;
 		const EndIcon = () => <div data-testid="end-icon">End</div>;
 		const { getByText, getByTestId } = render(
@@ -119,12 +119,12 @@ describe("Button (Web)", () => {
 		expect(getByTestId("end-icon")).toBeTruthy();
 	});
 
-	it("applies fullWidth style when fullWidth prop is true", () => {
+	it("aplica estilo fullWidth quando prop fullWidth é true", () => {
 		const { getByText } = render(<Button fullWidth>Full Width Button</Button>);
 		expect(getByText("Full Width Button")).toBeTruthy();
 	});
 
-	it("shows loading spinner instead of icons when loading", () => {
+	it("mostra spinner de carregamento em vez de ícones quando carregando", () => {
 		const TestIcon = () => <div data-testid="test-icon">Icon</div>;
 		const { queryByTestId, getByText } = render(
 			<Button loading startIcon={<TestIcon />} endIcon={<TestIcon />}>
@@ -136,7 +136,7 @@ describe("Button (Web)", () => {
 		expect(getByText("Loading Button")).toBeTruthy();
 	});
 
-	it("handles undefined onClick prop", () => {
+	it("manipula prop onClick indefinida", () => {
 		const { getByText } = render(<Button>Button without onClick</Button>);
 		const button = getByText("Button without onClick");
 
@@ -144,7 +144,7 @@ describe("Button (Web)", () => {
 		expect(() => fireEvent.click(button)).not.toThrow();
 	});
 
-	it("handles disabled state with all variants", () => {
+	it("manipula estado desabilitado com todas as variantes", () => {
 		const variants = ["save", "warning", "delete", "default"] as const;
 		variants.forEach((variant) => {
 			const { getByText } = render(
@@ -156,7 +156,7 @@ describe("Button (Web)", () => {
 		});
 	});
 
-	it("handles loading state with different sizes", () => {
+	it("manipula estado de carregamento com diferentes tamanhos", () => {
 		const sizes = ["small", "medium", "large"] as const;
 		sizes.forEach((size) => {
 			const { getByText } = render(
@@ -168,7 +168,7 @@ describe("Button (Web)", () => {
 		});
 	});
 
-	it("handles loading state with different icon sizes", () => {
+	it("manipula estado de carregamento com diferentes tamanhos de ícone", () => {
 		const iconSizes = ["small", "medium", "large"] as const;
 		iconSizes.forEach((iconSize) => {
 			const { getByText } = render(
@@ -180,7 +180,7 @@ describe("Button (Web)", () => {
 		});
 	});
 
-	it("maintains variant colors when loading", () => {
+	it("mantém cores da variante quando carregando", () => {
 		const { getByText } = render(
 			<Button variant="save" loading>
 				Loading Save
@@ -189,7 +189,7 @@ describe("Button (Web)", () => {
 		expect(getByText("Loading Save")).toBeTruthy();
 	});
 
-	it("handles all combinations of props", () => {
+	it("manipula todas as combinações de props", () => {
 		const { getByText } = render(
 			<Button variant="warning" size="large" iconSize="small" fullWidth loading loadingText="Custom Loading">
 				Complex Button
@@ -199,7 +199,7 @@ describe("Button (Web)", () => {
 	});
 
 	// Testes específicos para cobrir styled-components
-	it("renders Spinner component with correct props", () => {
+	it("renderiza componente Spinner com props corretas", () => {
 		const { getByText } = render(
 			<Button loading iconSize="large" variant="save">
 				Loading Button
@@ -208,7 +208,7 @@ describe("Button (Web)", () => {
 		expect(getByText("Loading Button")).toBeTruthy();
 	});
 
-	it("renders IconWrapper with SVG icon", () => {
+	it("renderiza IconWrapper com ícone SVG", () => {
 		const SvgIcon = () => (
 			<svg data-testid="svg-icon" width="16" height="16">
 				<circle cx="8" cy="8" r="4" fill="currentColor" />
@@ -222,7 +222,7 @@ describe("Button (Web)", () => {
 		expect(getByTestId("svg-icon")).toBeTruthy();
 	});
 
-	it("renders ButtonStyled with all style props", () => {
+	it("renderiza ButtonStyled com todas as props de estilo", () => {
 		const { getByText } = render(
 			<Button variant="delete" size="small" iconSize="large" fullWidth disabled style={{ marginTop: "10px" }}>
 				Styled Button
@@ -231,7 +231,7 @@ describe("Button (Web)", () => {
 		expect(getByText("Styled Button")).toBeTruthy();
 	});
 
-	it("renders ButtonStyled with focus and hover states", () => {
+	it("renderiza ButtonStyled com estados de foco e hover", () => {
 		const { getByText } = render(
 			<Button variant="save" size="medium">
 				Interactive Button
@@ -252,7 +252,7 @@ describe("Button (Web)", () => {
 		expect(button).toBeTruthy();
 	});
 
-	it("renders ButtonStyled with disabled hover and focus states", () => {
+	it("renderiza ButtonStyled com estados de hover e foco desabilitados", () => {
 		const { getByText } = render(
 			<Button variant="default" disabled>
 				Disabled Interactive Button
@@ -273,7 +273,7 @@ describe("Button (Web)", () => {
 		expect(button).toBeTruthy();
 	});
 
-	it("renders ButtonStyled with different size gaps", () => {
+	it("renderiza ButtonStyled com diferentes espaçamentos de tamanho", () => {
 		const sizes = ["small", "medium", "large"] as const;
 		sizes.forEach((size) => {
 			const { getByText } = render(
@@ -285,7 +285,7 @@ describe("Button (Web)", () => {
 		});
 	});
 
-	it("renders ButtonStyled with different variant colors", () => {
+	it("renderiza ButtonStyled com diferentes cores de variante", () => {
 		const variants = ["save", "warning", "delete", "default"] as const;
 		variants.forEach((variant) => {
 			const { getByText } = render(<Button variant={variant}>{variant} Button</Button>);
@@ -293,7 +293,7 @@ describe("Button (Web)", () => {
 		});
 	});
 
-	it("renders ButtonStyled with disabled variant colors", () => {
+	it("renderiza ButtonStyled com cores de variante desabilitadas", () => {
 		const variants = ["save", "warning", "delete", "default"] as const;
 		variants.forEach((variant) => {
 			const { getByText } = render(
@@ -305,7 +305,7 @@ describe("Button (Web)", () => {
 		});
 	});
 
-	it("renders ButtonStyled with fullWidth and auto width", () => {
+	it("renderiza ButtonStyled com fullWidth e largura automática", () => {
 		// Test fullWidth
 		const { getByText: getByTextFull } = render(<Button fullWidth>Full Width Button</Button>);
 		expect(getByTextFull("Full Width Button")).toBeTruthy();
@@ -315,7 +315,7 @@ describe("Button (Web)", () => {
 		expect(getByTextAuto("Auto Width Button")).toBeTruthy();
 	});
 
-	it("renders IconWrapper with different icon sizes", () => {
+	it("renderiza IconWrapper com diferentes tamanhos de ícone", () => {
 		const iconSizes = ["small", "medium", "large"] as const;
 		iconSizes.forEach((iconSize) => {
 			const { getByText } = render(
@@ -327,7 +327,7 @@ describe("Button (Web)", () => {
 		});
 	});
 
-	it("renders Spinner with different icon sizes", () => {
+	it("renderiza Spinner com diferentes tamanhos de ícone", () => {
 		const iconSizes = ["small", "medium", "large"] as const;
 		iconSizes.forEach((iconSize) => {
 			const { getByText } = render(
@@ -340,7 +340,7 @@ describe("Button (Web)", () => {
 	});
 
 	// Testes específicos para forçar execução das funções de interpolação do styled-components
-	it("forces execution of Spinner styled component interpolation", () => {
+	it("força execução da interpolação do componente Spinner styled", () => {
 		const { getByText } = render(
 			<Button loading iconSize="small" variant="save">
 				Small Loading
@@ -349,7 +349,7 @@ describe("Button (Web)", () => {
 		expect(getByText("Small Loading")).toBeTruthy();
 	});
 
-	it("forces execution of IconWrapper styled component interpolation", () => {
+	it("força execução da interpolação do IconWrapper styled component", () => {
 		const { getByText } = render(
 			<Button startIcon={<div>Icon</div>} iconSize="large">
 				Large Icon Button
@@ -358,7 +358,7 @@ describe("Button (Web)", () => {
 		expect(getByText("Large Icon Button")).toBeTruthy();
 	});
 
-	it("forces execution of ButtonStyled interpolation functions", () => {
+	it("força execução das funções de interpolação do ButtonStyled", () => {
 		// Teste todas as combinações de props que forçam a execução das funções de interpolação
 		const testCases = [
 			{ variant: "save" as const, size: "small" as const, disabled: false, fullWidth: false },
@@ -379,7 +379,7 @@ describe("Button (Web)", () => {
 		});
 	});
 
-	it("forces execution of all styled component interpolations with edge cases", () => {
+	it("força execução de todas as interpolações de styled components com casos extremos", () => {
 		// Teste casos extremos que forçam todas as funções de interpolação
 		const { getByText } = render(
 			<Button
@@ -400,13 +400,13 @@ describe("Button (Web)", () => {
 		expect(getByText("Custom Loading")).toBeTruthy();
 	});
 
-	it("forces execution of ButtonStyled with undefined props", () => {
+	it("força execução do ButtonStyled com props indefinidas", () => {
 		// Teste com props undefined para forçar valores padrão
 		const { getByText } = render(<Button>Default Button</Button>);
 		expect(getByText("Default Button")).toBeTruthy();
 	});
 
-	it("forces execution of ButtonStyled with null props", () => {
+	it("força execução do ButtonStyled com props null", () => {
 		// Teste com props null
 		const { getByText } = render(
 			<Button
@@ -423,7 +423,7 @@ describe("Button (Web)", () => {
 	});
 
 	// Testes específicos para cobrir os branches restantes (linhas 95-102)
-	it("forces execution of all ButtonStyled interpolation branches", () => {
+	it("força execução de todos os branches de interpolação do ButtonStyled", () => {
 		// Teste todas as combinações possíveis de props para forçar execução de todos os branches
 		const testCases = [
 			// Teste com props undefined/null para forçar valores padrão
@@ -451,7 +451,7 @@ describe("Button (Web)", () => {
 		});
 	});
 
-	it("forces execution of ButtonStyled with all possible disabled values", () => {
+	it("força execução do ButtonStyled com todos os valores possíveis para disabled", () => {
 		// Teste todos os valores possíveis para disabled
 		const disabledValues = [true, false, undefined, null];
 
@@ -461,7 +461,7 @@ describe("Button (Web)", () => {
 		});
 	});
 
-	it("forces execution of ButtonStyled with all possible fullWidth values", () => {
+	it("força execução do ButtonStyled com todos os valores possíveis para fullWidth", () => {
 		// Teste todos os valores possíveis para fullWidth
 		const fullWidthValues = [true, false, undefined, null];
 
@@ -471,7 +471,7 @@ describe("Button (Web)", () => {
 		});
 	});
 
-	it("forces execution of ButtonStyled with all possible variant values", () => {
+	it("força execução do ButtonStyled com todos os valores possíveis para variant", () => {
 		// Teste todos os valores possíveis para variant
 		const variantValues = ["save", "warning", "delete", "default", undefined, null];
 
@@ -481,7 +481,7 @@ describe("Button (Web)", () => {
 		});
 	});
 
-	it("forces execution of ButtonStyled with all possible size values", () => {
+	it("força execução do ButtonStyled com todos os valores possíveis para size", () => {
 		// Teste todos os valores possíveis para size
 		const sizeValues = ["small", "medium", "large", undefined, null];
 
