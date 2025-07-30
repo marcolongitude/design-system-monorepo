@@ -1,22 +1,29 @@
-// Mock para React Native
-jest.mock("react-native", () => ({
-	Text: "Text",
-	View: "View",
-	StyleSheet: {
-		create: (styles) => styles,
-	},
-	Dimensions: {
-		get: () => ({ width: 375, height: 667 }),
-	},
-}));
+const React = require("react");
+
+// Mock mais robusto para React Native
+jest.mock("react-native", () => {
+	const React = require("react");
+
+	return {
+		Text: React.forwardRef((props, ref) => React.createElement("Text", { ...props, ref })),
+		View: React.forwardRef((props, ref) => React.createElement("View", { ...props, ref })),
+		TouchableOpacity: React.forwardRef((props, ref) => React.createElement("TouchableOpacity", { ...props, ref })),
+		ActivityIndicator: React.forwardRef((props, ref) =>
+			React.createElement("ActivityIndicator", { ...props, ref })
+		),
+		StyleSheet: {
+			create: (styles) => styles,
+		},
+		Dimensions: {
+			get: () => ({ width: 375, height: 667 }),
+		},
+	};
+});
 
 // Mock para @shopify/restyle
 jest.mock("@shopify/restyle", () => ({
-	createText: jest.fn(() => (props) => {
-		const React = require("react");
-		return React.createElement("Text", props, props.children);
-	}),
-	createTheme: jest.fn((theme) => theme),
+	createText: () => (props) => React.createElement("Text", props),
+	createTheme: (theme) => theme,
 	ThemeProvider: ({ children }) => children,
 }));
 

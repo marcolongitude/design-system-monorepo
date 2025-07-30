@@ -21,9 +21,32 @@ module.exports = {
 		},
 		{
 			displayName: "react-native-components",
-			testMatch: ["<rootDir>/packages/react-native-components/**/*.test.{ts,tsx}"],
+			testMatch: [
+				"<rootDir>/packages/react-native-components/**/*.test.ts",
+				"<rootDir>/packages/react-native-components/**/*.test.tsx",
+			],
+			testPathIgnorePatterns: ["\\.web\\.test\\.(ts|tsx)$"],
 			testEnvironment: "node",
 			setupFilesAfterEnv: ["<rootDir>/jest.setup.native.js"],
+			moduleNameMapper: {
+				"^@meu-escopo/theme$": "<rootDir>/packages/theme/src",
+				"^@meu-escopo/react-native-components$": "<rootDir>/packages/react-native-components/src",
+			},
+			transform: {
+				"^.+\\.(ts|tsx)$": "ts-jest",
+			},
+			moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
+			collectCoverageFrom: [
+				"packages/react-native-components/src/**/*.{ts,tsx}",
+				"!packages/react-native-components/src/**/*.stories.{ts,tsx}",
+				"!packages/react-native-components/src/**/*.d.ts",
+			],
+		},
+		{
+			displayName: "react-native-components-web",
+			testMatch: ["<rootDir>/packages/react-native-components/**/*.web.test.{ts,tsx}"],
+			testEnvironment: "jsdom",
+			setupFilesAfterEnv: ["<rootDir>/jest.setup.native-web.js"],
 			moduleNameMapper: {
 				"^@meu-escopo/theme$": "<rootDir>/packages/theme/src",
 				"^@meu-escopo/react-native-components$": "<rootDir>/packages/react-native-components/src",

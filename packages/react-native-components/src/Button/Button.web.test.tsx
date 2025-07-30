@@ -2,7 +2,7 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import { Button } from ".";
 
-describe("Button", () => {
+describe("Button React Native (via Web)", () => {
 	it("renders correctly with default props", () => {
 		const { getByText } = render(<Button>Test Button</Button>);
 		expect(getByText("Test Button")).toBeTruthy();
@@ -19,29 +19,31 @@ describe("Button", () => {
 	});
 
 	it("handles disabled state", () => {
-		const onClick = jest.fn();
+		const onPress = jest.fn();
 		const { getByText } = render(
-			<Button disabled onClick={onClick}>
+			<Button disabled onPress={onPress}>
 				Disabled Button
 			</Button>
 		);
 
 		const button = getByText("Disabled Button");
 		fireEvent.click(button);
-		expect(onClick).not.toHaveBeenCalled();
+		expect(onPress).not.toHaveBeenCalled();
 	});
 
 	it("handles loading state", () => {
-		const onClick = jest.fn();
-		const { getByText } = render(
-			<Button loading onClick={onClick}>
+		const onPress = jest.fn();
+		const { getByText, getByTestId } = render(
+			<Button loading onPress={onPress}>
 				Loading Button
 			</Button>
 		);
 
 		const button = getByText("Loading Button");
+		const spinner = getByTestId("activity-indicator");
 		fireEvent.click(button);
-		expect(onClick).toHaveBeenCalledTimes(1);
+		expect(onPress).toHaveBeenCalledTimes(1);
+		expect(spinner).toBeTruthy();
 	});
 
 	it("shows custom loading text when provided", () => {
@@ -54,13 +56,13 @@ describe("Button", () => {
 		expect(getByText("Salvando...")).toBeTruthy();
 	});
 
-	it("handles click events when enabled", () => {
-		const onClick = jest.fn();
-		const { getByText } = render(<Button onClick={onClick}>Enabled Button</Button>);
+	it("handles press events when enabled", () => {
+		const onPress = jest.fn();
+		const { getByText } = render(<Button onPress={onPress}>Enabled Button</Button>);
 
 		const button = getByText("Enabled Button");
 		fireEvent.click(button);
-		expect(onClick).toHaveBeenCalledTimes(1);
+		expect(onPress).toHaveBeenCalledTimes(1);
 	});
 
 	it("renders with start icon", () => {
@@ -86,7 +88,7 @@ describe("Button", () => {
 
 	it("shows loading spinner instead of icons when loading", () => {
 		const TestIcon = () => <div data-testid="test-icon">Icon</div>;
-		const { queryByTestId, getByText } = render(
+		const { queryByTestId, getByText, getByTestId } = render(
 			<Button loading startIcon={<TestIcon />} endIcon={<TestIcon />}>
 				Loading Button
 			</Button>
@@ -94,5 +96,6 @@ describe("Button", () => {
 
 		expect(queryByTestId("test-icon")).toBeNull();
 		expect(getByText("Loading Button")).toBeTruthy();
+		expect(getByTestId("activity-indicator")).toBeTruthy();
 	});
 });

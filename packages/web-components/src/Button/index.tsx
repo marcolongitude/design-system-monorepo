@@ -138,6 +138,7 @@ export const Button = ({
 			iconSize={iconSize}
 			disabled={disabled}
 			fullWidth={fullWidth}
+			onClick={onClick}
 			{...props}
 		>
 			{loading ? (
