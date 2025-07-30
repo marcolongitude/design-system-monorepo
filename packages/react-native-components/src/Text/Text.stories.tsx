@@ -2,7 +2,6 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { rnTheme } from "@meu-escopo/theme";
 import { Text } from ".";
-import { DebugText } from "./DebugText";
 
 const isWeb = typeof window !== "undefined" && window.document;
 
@@ -58,10 +57,6 @@ const meta: Meta<typeof Text> = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-
-export const Debug: Story = {
-	render: () => <DebugText />,
-};
 
 export const Default: Story = {
 	args: {

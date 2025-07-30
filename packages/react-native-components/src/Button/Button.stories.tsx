@@ -4,26 +4,52 @@ import { View, Text } from "react-native";
 import { Button } from ".";
 
 // Ícones de exemplo para demonstrar os ícones
+// Ícones brancos para variantes coloridas (save, warning, delete)
 const SaveIcon = () => (
-	<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+	<svg width="16" height="16" viewBox="0 0 24 24" fill="#ffffff">
 		<path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z" />
 	</svg>
 );
 
 const WarningIcon = () => (
-	<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+	<svg width="16" height="16" viewBox="0 0 24 24" fill="#ffffff">
 		<path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
 	</svg>
 );
 
 const DeleteIcon = () => (
-	<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+	<svg width="16" height="16" viewBox="0 0 24 24" fill="#ffffff">
 		<path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
 	</svg>
 );
 
 const ArrowRightIcon = () => (
-	<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+	<svg width="16" height="16" viewBox="0 0 24 24" fill="#ffffff">
+		<path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+	</svg>
+);
+
+// Ícones pretos para variante default
+const SaveIconBlack = () => (
+	<svg width="16" height="16" viewBox="0 0 24 24" fill="#6B7280">
+		<path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z" />
+	</svg>
+);
+
+const WarningIconBlack = () => (
+	<svg width="16" height="16" viewBox="0 0 24 24" fill="#6B7280">
+		<path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+	</svg>
+);
+
+const DeleteIconBlack = () => (
+	<svg width="16" height="16" viewBox="0 0 24 24" fill="#6B7280">
+		<path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+	</svg>
+);
+
+const ArrowRightIconBlack = () => (
+	<svg width="16" height="16" viewBox="0 0 24 24" fill="#6B7280">
 		<path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
 	</svg>
 );
@@ -166,7 +192,7 @@ export const WithEndIcon: Story = {
 	args: {
 		children: "Próximo",
 		variant: "default",
-		endIcon: <ArrowRightIcon />,
+		endIcon: <ArrowRightIconBlack />,
 	},
 };
 
@@ -288,7 +314,7 @@ export const CombinedProps: Story = {
 				Excluir
 			</Button>
 
-			<Button variant="default" size="medium" fullWidth endIcon={<ArrowRightIcon />}>
+			<Button variant="default" size="medium" fullWidth endIcon={<ArrowRightIconBlack />}>
 				Próximo Passo
 			</Button>
 		</View>

@@ -67,24 +67,34 @@ export const Button = ({
 			{loading ? (
 				<Spinner size={iconSize} color={colors.color} />
 			) : (
-				startIcon && <IconWrapper iconSize={iconSize}>{startIcon}</IconWrapper>
+				startIcon && (
+					<IconWrapper iconSize={iconSize} color={colors.color}>
+						{startIcon}
+					</IconWrapper>
+				)
 			)}
 			{loading ? loadingText || children : children}
-			{!loading && endIcon && <IconWrapper iconSize={iconSize}>{endIcon}</IconWrapper>}
+			{!loading && endIcon && (
+				<IconWrapper iconSize={iconSize} color={colors.color}>
+					{endIcon}
+				</IconWrapper>
+			)}
 		</ButtonStyled>
 	);
 };
 
-const IconWrapper = styled.span<{ iconSize: string }>`
+const IconWrapper = styled.span<{ iconSize: string; color: string }>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	width: ${({ iconSize }) => getIconSize(iconSize)};
 	height: ${({ iconSize }) => getIconSize(iconSize)};
+	color: ${({ color }) => color};
 
 	svg {
 		width: 100%;
 		height: 100%;
+		fill: currentColor;
 	}
 `;
 
