@@ -59,16 +59,13 @@ const baseTheme = {
 	},
 };
 
-// Exportar tema compatível com Restyle apenas no React Native
 export const rnTheme = isWeb
 	? baseTheme
 	: (() => {
 			try {
-				// Importação dinâmica do restyle apenas no React Native
 				const { createTheme } = require("@shopify/restyle");
 				return createTheme(baseTheme);
 			} catch (error) {
-				// Fallback se o restyle não estiver disponível
 				return baseTheme;
 			}
 	  })();

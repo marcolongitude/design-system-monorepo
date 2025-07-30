@@ -6,11 +6,9 @@ export interface TextProps {
 	size?: FontSize;
 	fontWeight?: FontWeight;
 	color?: TextColor;
-	// Outras props nativas do Text podem ser passadas
 	[key: string]: any;
 }
 
-// Detectar se estamos em ambiente web
 const isWeb = typeof window !== "undefined" && window.document;
 
 export const Text: React.FC<TextProps> = ({
@@ -21,7 +19,6 @@ export const Text: React.FC<TextProps> = ({
 	style,
 	...rest
 }) => {
-	// Se estamos no ambiente web (Storybook), usar implementação simples sem restyle
 	if (isWeb) {
 		const webStyle = {
 			fontSize: tokens.fontSizes[size],
@@ -38,7 +35,6 @@ export const Text: React.FC<TextProps> = ({
 		);
 	}
 
-	// No React Native, usar implementação simples com Text nativo
 	try {
 		const React = require("react");
 		const { Text: RNText } = require("react-native");
@@ -52,7 +48,6 @@ export const Text: React.FC<TextProps> = ({
 
 		return React.createElement(RNText, { style: nativeStyle, ...rest }, children);
 	} catch (error) {
-		// Fallback final se nem react-native estiver disponível
 		const fallbackStyle = {
 			fontSize: tokens.fontSizes[size],
 			fontWeight: tokens.fontWeights[fontWeight],

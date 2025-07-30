@@ -99,7 +99,6 @@ export const AllSizes: Story = {
 	),
 };
 
-// Exemplo mostrando todos os pesos de fonte
 export const AllFontWeights: Story = {
 	render: () => (
 		<div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
@@ -111,7 +110,6 @@ export const AllFontWeights: Story = {
 	),
 };
 
-// Exemplo mostrando todas as cores de texto
 export const AllTextColors: Story = {
 	render: () => (
 		<div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
@@ -123,7 +121,6 @@ export const AllTextColors: Story = {
 	),
 };
 
-// Exemplo combinando tamanhos, pesos e cores
 export const CombinedStyles: Story = {
 	render: () => (
 		<div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -146,7 +143,6 @@ export const CombinedStyles: Story = {
 	),
 };
 
-// Exemplo de hierarquia tipográfica
 export const TypographyHierarchy: Story = {
 	render: () => (
 		<div style={{ display: "flex", flexDirection: "column", gap: "16px", maxWidth: "500px" }}>

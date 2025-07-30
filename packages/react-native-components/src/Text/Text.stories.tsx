@@ -4,22 +4,17 @@ import { rnTheme } from "@meu-escopo/theme";
 import { Text } from ".";
 import { DebugText } from "./DebugText";
 
-// Detectar se estamos em ambiente web
 const isWeb = typeof window !== "undefined" && window.document;
 
-// Wrapper condicional para o ThemeProvider - apenas no React Native
 const Wrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-	// No web, não precisamos do ThemeProvider pois o componente usa implementação web direta
 	if (isWeb) {
 		return <>{children}</>;
 	}
 
-	// No React Native, tentar usar o ThemeProvider se disponível
 	try {
 		const { ThemeProvider } = require("@shopify/restyle");
 		return React.createElement(ThemeProvider, { theme: rnTheme }, children);
 	} catch (error) {
-		// Fallback se restyle não estiver disponível
 		return <>{children}</>;
 	}
 };
@@ -64,7 +59,6 @@ const meta: Meta<typeof Text> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 🐛 DEBUG: Componente para testar restyle diretamente
 export const Debug: Story = {
 	render: () => <DebugText />,
 };
@@ -119,7 +113,6 @@ export const LargeBoldSecondary: Story = {
 	},
 };
 
-// Exemplo mostrando todos os tamanhos
 export const AllSizes: Story = {
 	render: () => (
 		<div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
@@ -133,7 +126,6 @@ export const AllSizes: Story = {
 	),
 };
 
-// Exemplo mostrando todos os pesos de fonte
 export const AllFontWeights: Story = {
 	render: () => (
 		<div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
@@ -145,7 +137,6 @@ export const AllFontWeights: Story = {
 	),
 };
 
-// Exemplo mostrando todas as cores de texto
 export const AllTextColors: Story = {
 	render: () => (
 		<div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
@@ -157,7 +148,6 @@ export const AllTextColors: Story = {
 	),
 };
 
-// Exemplo combinando tamanhos, pesos e cores
 export const CombinedStyles: Story = {
 	render: () => (
 		<div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -180,7 +170,6 @@ export const CombinedStyles: Story = {
 	),
 };
 
-// Exemplo de hierarquia tipográfica
 export const TypographyHierarchy: Story = {
 	render: () => (
 		<div style={{ display: "flex", flexDirection: "column", gap: "16px", maxWidth: "300px" }}>

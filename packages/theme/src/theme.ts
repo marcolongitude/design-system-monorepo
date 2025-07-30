@@ -1,28 +1,27 @@
-// Tokens base compartilhados entre plataformas
+import { colorSchema } from "./colorSchema";
+
 export const tokens = {
 	colors: {
-		primary: "#4F46E5",
-		secondary: "#7C3AED",
-		background: "#ffffff",
-		text: "#000000",
-		textSecondary: "#6B7280",
-		error: "#EF4444",
-		success: "#10B981",
-		warning: "#F59E0B",
-		// Cores específicas para Text component
-		// Design system com tons de cinza limitados
+		primary: colorSchema.purple[500],
+		secondary: colorSchema.purple[700],
+		background: colorSchema.gray[200],
+		text: colorSchema.black[900],
+		textSecondary: colorSchema.gray[500],
+		error: colorSchema.red[500],
+		success: colorSchema.green[500],
+		warning: colorSchema.yellow[500],
 		textColors: {
-			// Para Light Theme (tons mais escuros)
-			primary: "#111827", // Gray-900 - Texto principal
-			secondary: "#374151", // Gray-700 - Texto secundário
-			tertiary: "#6B7280", // Gray-500 - Texto terciário
-			muted: "#9CA3AF", // Gray-400 - Texto mais sutil
-			// Para Dark Theme (tons mais claros) - futura implementação
-			primaryDark: "#F9FAFB", // Gray-50 - Texto principal dark
-			secondaryDark: "#E5E7EB", // Gray-200 - Texto secundário dark
-			tertiaryDark: "#9CA3AF", // Gray-400 - Texto terciário dark
-			mutedDark: "#6B7280", // Gray-500 - Texto mais sutil dark
+			primary: colorSchema.black[900],
+			secondary: colorSchema.black[700],
+			tertiary: colorSchema.gray[500],
+			muted: colorSchema.gray[400],
+			primaryDark: colorSchema.gray[200],
+			secondaryDark: colorSchema.gray[300],
+			tertiaryDark: colorSchema.gray[400],
+			mutedDark: colorSchema.gray[500],
 		},
+		// Adicionando acesso direto ao colorSchema
+		schema: colorSchema,
 	},
 	spacing: {
 		xs: 4,
@@ -54,12 +53,10 @@ export const tokens = {
 	},
 };
 
-// Tema para Web (styled-components)
 export const webTheme = {
 	...tokens,
 };
 
-// Tipos para TypeScript
 export type WebTheme = typeof webTheme;
 export type FontSize = keyof typeof tokens.fontSizes;
 export type FontWeight = keyof typeof tokens.fontWeights;

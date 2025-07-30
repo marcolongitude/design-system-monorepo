@@ -1,6 +1,5 @@
 import * as React from "react";
 
-// Mock do tema para os testes
 jest.mock("@meu-escopo/theme", () => ({
 	webTheme: {
 		colors: {
@@ -28,11 +27,9 @@ jest.mock("@meu-escopo/theme", () => ({
 	},
 }));
 
-// Mock simplificado do styled-components
 jest.mock("styled-components", () => {
 	const mockStyled = (templateStrings: any, ...interpolations: any[]) => {
 		return React.forwardRef((props: any, ref: any) => {
-			// Executar as funções de interpolação para coverage
 			interpolations.forEach((fn) => {
 				if (typeof fn === "function") {
 					fn(props);
@@ -51,12 +48,10 @@ jest.mock("styled-components", () => {
 });
 
 describe("Text Component (Web) - Unit Tests", () => {
-	// Importar após os mocks
 	const { Text } = require("./index");
 
 	describe("Execução do componente funcional", () => {
 		it("deve executar o componente Text", () => {
-			// Executar o componente para cobrir linha 31
 			const result = Text({ children: "Test" });
 			expect(result).toBeDefined();
 			expect(result.type).toBeDefined();
@@ -75,11 +70,9 @@ describe("Text Component (Web) - Unit Tests", () => {
 
 	describe("StyledText com interpolações", () => {
 		it("deve executar funções de interpolação para $color", () => {
-			// Simular a execução do styled-component para cobrir linhas 12-14
 			const mockProps = { $color: "primary" };
 			const result = Text({ children: "Test" });
 
-			// Garantir que o componente foi criado com props
 			expect(result.props.children).toBe("Test");
 		});
 
@@ -108,7 +101,6 @@ describe("Text Component (Web) - Unit Tests", () => {
 		});
 
 		it("deve executar interpolação com valores padrão", () => {
-			// Testar defaults para cobrir os branches
 			const result = Text({ children: "Test" });
 			expect(result).toBeDefined();
 		});
@@ -262,7 +254,6 @@ describe("Text Component (Web) - Unit Tests", () => {
 			const element = React.createElement(Text, { children: "Minimal" });
 
 			expect(element.props.children).toBe("Minimal");
-			// Componente existe e pode ser renderizado
 			expect(element.type).toBeDefined();
 		});
 

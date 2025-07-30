@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Text } from "./index";
 
-// Mock do tema para os testes
 jest.mock("@meu-escopo/theme", () => ({
 	tokens: {
 		fontSizes: {
@@ -145,7 +144,6 @@ describe("Text Component (React Native)", () => {
 				children: "Default Text",
 			});
 
-			// O componente deve funcionar sem props explícitas
 			expect(element.props.children).toBe("Default Text");
 		});
 	});
