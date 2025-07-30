@@ -4,25 +4,25 @@ describe("Theme Module", () => {
 	describe("tokens", () => {
 		it("deve ter todas as cores definidas", () => {
 			expect(tokens.colors).toBeDefined();
-			expect(tokens.colors.primary).toBe("#4F46E5");
-			expect(tokens.colors.secondary).toBe("#7C3AED");
-			expect(tokens.colors.background).toBe("#ffffff");
-			expect(tokens.colors.text).toBe("#000000");
+			expect(tokens.colors.primary).toBe("#A855F7"); // purple[500]
+			expect(tokens.colors.secondary).toBe("#7C3AED"); // purple[700]
+			expect(tokens.colors.background).toBe("#F3F4F6"); // gray[200]
+			expect(tokens.colors.text).toBe("#111827"); // black[900]
 		});
 
 		it("deve ter cores de texto definidas", () => {
 			expect(tokens.colors.textColors).toBeDefined();
 			expect(tokens.colors.textColors.primary).toBe("#111827");
 			expect(tokens.colors.textColors.secondary).toBe("#374151");
-			expect(tokens.colors.textColors.tertiary).toBe("#6B7280");
-			expect(tokens.colors.textColors.muted).toBe("#9CA3AF");
+			expect(tokens.colors.textColors.tertiary).toBe("#9CA3AF"); // gray[500]
+			expect(tokens.colors.textColors.muted).toBe("#D1D5DB"); // gray[400]
 		});
 
 		it("deve ter cores de dark theme definidas", () => {
-			expect(tokens.colors.textColors.primaryDark).toBe("#F9FAFB");
-			expect(tokens.colors.textColors.secondaryDark).toBe("#E5E7EB");
-			expect(tokens.colors.textColors.tertiaryDark).toBe("#9CA3AF");
-			expect(tokens.colors.textColors.mutedDark).toBe("#6B7280");
+			expect(tokens.colors.textColors.primaryDark).toBe("#F3F4F6"); // gray[200]
+			expect(tokens.colors.textColors.secondaryDark).toBe("#E5E7EB"); // gray[300]
+			expect(tokens.colors.textColors.tertiaryDark).toBe("#D1D5DB"); // gray[400]
+			expect(tokens.colors.textColors.mutedDark).toBe("#9CA3AF"); // gray[500]
 		});
 
 		it("deve ter espaçamentos definidos", () => {
